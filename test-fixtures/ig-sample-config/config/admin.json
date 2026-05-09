@@ -1,0 +1,16 @@
+{
+  "prefix": "openig",
+  "mode": "PRODUCTION",
+  "secrets": {
+    "stores": [
+      {
+        "type": "FileSystemSecretStore",
+        "name": "FileSystemSecrets",
+        "config": {
+          "format": "PLAIN",
+          "directory": "/opt/openig/secrets"
+        }
+      }
+    ]
+  }
+}

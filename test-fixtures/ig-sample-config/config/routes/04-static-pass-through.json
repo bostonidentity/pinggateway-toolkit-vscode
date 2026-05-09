@@ -1,0 +1,5 @@
+{
+  "name": "static-pass-through",
+  "condition": "${matches(request.uri.path, '^/static/.*')}",
+  "handler": "ClientHandler"
+}

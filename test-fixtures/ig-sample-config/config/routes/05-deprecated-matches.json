@@ -1,0 +1,21 @@
+{
+  "name": "deprecated-matches-route",
+  "condition": "${matches(request.uri.path, '^/legacy/api/.*')}",
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "type": "ScriptableFilter",
+          "config": {
+            "type": "application/x-groovy",
+            "file": "blocking-calls.groovy"
+          }
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  },
+  "Session": "shared",
+  "matches": "should-not-be-here"
+}

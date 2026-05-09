@@ -1,0 +1,5 @@
+{
+  "name": "user-api",
+  "condition": "${matches(request.uri.path, '^/api/users/v2/.*')}",
+  "handler": "ClientHandler"
+}

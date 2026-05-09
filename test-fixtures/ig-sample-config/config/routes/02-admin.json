@@ -1,0 +1,19 @@
+{
+  "name": "admin-route",
+  "condition": "${matches(request.uri.path, '^/admin/.*')}",
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "type": "ScriptableFilter",
+          "config": {
+            "type": "application/x-groovy",
+            "file": "behavior-changes.groovy"
+          }
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  }
+}

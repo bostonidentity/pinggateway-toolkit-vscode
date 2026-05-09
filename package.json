@@ -1,0 +1,128 @@
+{
+  "name": "pinggateway-toolkit",
+  "displayName": "PingGateway Toolkit",
+  "description": "Pre-upgrade compatibility scanner for ForgeRock / Ping Identity Gateway. Detects issues across Groovy scripts, route configs, security policies, and filesystem paths with native VSCode diagnostics.",
+  "version": "0.1.0",
+  "preview": true,
+  "license": "MIT",
+  "publisher": "BostonIdentity",
+  "icon": "media/icon.png",
+  "engines": {
+    "vscode": "^1.85.0",
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bostonidentity/pinggateway-toolkit-vscode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bostonidentity/pinggateway-toolkit-vscode/issues"
+  },
+  "homepage": "https://github.com/bostonidentity/pinggateway-toolkit-vscode#readme",
+  "categories": [
+    "Linters",
+    "Other"
+  ],
+  "keywords": [
+    "forgerock",
+    "ping",
+    "pingidentity",
+    "pinggateway",
+    "ping-gateway",
+    "identity-gateway",
+    "openig",
+    "ig",
+    "groovy",
+    "groovy4",
+    "iam",
+    "upgrade",
+    "migration",
+    "pre-upgrade",
+    "compatibility",
+    "linter",
+    "scanner",
+    "static-analysis",
+    "audit"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "iamToolkit",
+          "title": "PingGateway Toolkit",
+          "icon": "media/iam-toolkit.svg"
+        }
+      ]
+    },
+    "views": {
+      "iamToolkit": [
+        {
+          "id": "iamToolkit.tools",
+          "name": "Tools"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "iamToolkit.openTool",
+        "title": "Open Tool",
+        "category": "PingGateway Toolkit"
+      },
+      {
+        "command": "iamToolkit.analyzeIgUpgrade",
+        "title": "Run PingGateway Upgrade Scan",
+        "category": "PingGateway Toolkit"
+      }
+    ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "iamToolkit.openTool",
+          "when": "false"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "iamToolkit.analyzeIgUpgrade",
+          "when": "explorerResourceIsFolder",
+          "group": "iamToolkit@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "PingGateway Toolkit",
+      "properties": {
+        "iamToolkit.igUpgrade.disabledRules": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Rule IDs to skip during scanning (e.g. [\"G4-201\", \"PATH-102\"])."
+        },
+        "iamToolkit.igUpgrade.ignorePaths": {
+          "type": "array",
+          "items": { "type": "string" },
+          "default": [],
+          "description": "Absolute path prefixes to ignore for PATH-102 (e.g. [\"/opt/logs\", \"/var/log\"])."
+        },
+        "iamToolkit.igUpgrade.autoOpenProblems": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically open the Problems panel after a scan if any issues are found."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run compile",
+    "package": "vsce package --out ${npm_package_name}-${npm_package_version}.vsix"
+  },
+  "devDependencies": {
+    "@types/node": "^18.19.0",
+    "@types/vscode": "^1.85.0",
+    "typescript": "^5.3.0",
+    "@vscode/vsce": "^2.24.0"
+  }
+}

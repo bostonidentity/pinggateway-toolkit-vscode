@@ -1,0 +1,19 @@
+{
+  "name": "user-api",
+  "condition": "${matches(request.uri.path, '^/api/users/.*')}",
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "type": "ScriptableFilter",
+          "config": {
+            "type": "application/x-groovy",
+            "file": "blocking-calls.groovy"
+          }
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "duplicate-key-route",
+  "condition": "${request.uri.path == '/dup'}",
+  "handler": "ClientHandler",
+  "handler": "AnotherHandler"
+}

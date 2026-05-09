@@ -1,0 +1,19 @@
+{
+  "name": "broken-route",
+  "condition": "${matches(request.uri.path, '^/legacy/.*')}",
+  "handler": {
+    "type": "Chain",
+    "config": {
+      "filters": [
+        {
+          "type": "ScriptableFilter",
+          "config": {
+            "type": "application/x-groovy",
+            "file": "does-not-exist.groovy"
+          }
+        }
+      ],
+      "handler": "ClientHandler"
+    }
+  }
+}

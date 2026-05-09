@@ -1,0 +1,26 @@
+{
+  "heap": [
+    {
+      "name": "ScriptingService",
+      "type": "ScriptingService",
+      "config": {
+        "type": "application/x-groovy",
+        "scriptDirectory": "scripts/groovy"
+      }
+    },
+    {
+      "name": "ClientHandler",
+      "type": "ClientHandler"
+    },
+    {
+      "name": "AuditService",
+      "type": "AuditService",
+      "config": {
+        "config": {
+          "handlerForQueries": "JsonAuditEventHandler"
+        }
+      }
+    }
+  ],
+  "audit": "AuditService"
+}
